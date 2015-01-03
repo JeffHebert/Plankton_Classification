@@ -4,7 +4,7 @@ Created by Jeff Hebert 12/30/14
 
 For Kaggle Competition: http://www.kaggle.com/c/datasciencebowl
 
-This is basic starter code to create a plankton classification model based on image dimensions and image density. This code should produce a results file with public score of 7.626163.
+This is basic starter code to create a plankton classification model based on image dimensions and image density. This code should produce a results file with public score of 3.397518.
 __Surely you can come up with a better model!__
 
 

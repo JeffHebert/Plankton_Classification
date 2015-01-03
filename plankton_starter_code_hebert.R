@@ -5,7 +5,7 @@
 
 ## This is basic starter code to create a model to classify plankton
 ## based on image dimensions and image density.
-## This code should produce a results file with public score of 7.626163.
+## This code should produce a results file with public score of 3.397518.
 ## Surely you can come up with a better model!
 
 
@@ -138,13 +138,16 @@ importance(plankton_model)
 ## Check overall accuracy... 24%, not very good but not bad for a simplistic model
 table(plankton_model$predicted==y_dat)
 #  FALSE  TRUE 
-#  22996  7340
+#  22959  7377
 
 ## Make predictions and calculate log loss
 y_predictions <- predict(plankton_model, type="prob")
 
+ymin <- 1/1000
+y_predictions[y_predictions<ymin] <- ymin
+
 mcloss(y_actual = y_dat, y_pred = y_predictions)
-# 9.318507
+# 3.362268
 
 
 ## ==============================
@@ -179,7 +182,7 @@ mcloss(y_actual = y_dat, y_pred = y_predictions)
 
 ## Make predictions with class probabilities
 test_pred <- predict(plankton_model, test_data, type="prob")
-
+test_pred[test_pred<ymin] <- ymin
 
 ## ==============================
 ## Save Submission File
@@ -187,7 +190,7 @@ test_pred <- predict(plankton_model, test_data, type="prob")
 
 ## Combine image filename and class predictions, then save as csv
 submission <- cbind(image = test_data$image, test_pred)
-submission_filename <- paste(data_dir,"/submission02.csv",sep="")
+submission_filename <- paste(data_dir,"/submission03.csv",sep="")
 write.csv(submission, submission_filename, row.names = FALSE)
 
 
